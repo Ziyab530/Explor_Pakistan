@@ -51,11 +51,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         default="Regular"
     )
 
-    village_id = models.ForeignKey(Village, on_delete=models.SET_NULL,null=True, blank=True)
-    city_id = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
-    district_id = models.ForeignKey(District, on_delete=models.SET_NULL, null=True, blank=True)
-    division_id = models.ForeignKey(Division, on_delete=models.SET_NULL, null=True, blank=True)
-    province_id = models.ForeignKey(province, on_delete=models.SET_NULL, null=True, blank=True) 
+    village = models.ForeignKey(Village, on_delete=models.SET_NULL,null=True, blank=True)
+    city= models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
+    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True, blank=True)
+    division= models.ForeignKey(Division, on_delete=models.SET_NULL, null=True, blank=True)
+    province= models.ForeignKey(province, on_delete=models.SET_NULL, null=True, blank=True) 
 
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
