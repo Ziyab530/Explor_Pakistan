@@ -1,11 +1,13 @@
 from django.db import models
 
+
 class province(models.Model):
     provinces_id = models.IntegerField(primary_key=True)
     provinces_name = models.CharField(max_length=100)
     provinces_code = models.CharField(max_length=100)
     provinces_capital_city = models.CharField(max_length=100)
     No_divisions_in_provinces = models.IntegerField()
+    
 
     def __str__(self):
         return self.provinces_name
@@ -42,10 +44,22 @@ class City(models.Model):
     No_of_villages_in_city = models.IntegerField()
     City_description = models.TextField()
     Local_economy = models.CharField(max_length=200)
-    
+    submitted_by = models.ForeignKey(
+    'Users_app.User',  # instead of direct import
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name='submitted_cities'
+)
+
+
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.City_name
+    
+
+  
     
 
 class RegionEvent(models.Model):

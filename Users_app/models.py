@@ -4,6 +4,7 @@ from Citys_app.models import province,Division,District,City
 from Village_app.models import Village
 from .validators import validate_strong_password
 
+
 from django.conf import settings
 class UserType(models.TextChoices):
     REGULAR = 'Regular', 'Regular User'
@@ -12,22 +13,26 @@ class UserType(models.TextChoices):
     ADMIN = 'Admin', 'Administrator'  # You can hide this in the registration form
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, user_type=UserType.REGULAR, **extra_fields):
-        """Create a regular user"""
+    def create_user(self, email, username, password=None, **extra_fields):
         if not email:
-            raise ValueError("Users must have an email address")
+            raise ValueError('The Email must be set')
         email = self.normalize_email(email)
-        user = self.model(email=email, username=username, user_type=user_type, **extra_fields)
+        user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
-def create_superuser(self, email, username, password=None, **extra_fields):
-        """Create an admin user (superuser)"""
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
-        user = self.create_user(email, username, password, user_type=UserType.REGULAR, **extra_fields)
-        return user
+
+    def create_superuser(self, email, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(email, username, password, **extra_fields)
 
 
 

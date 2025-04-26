@@ -42,6 +42,8 @@ class CityViewSet(viewsets.ModelViewSet):
     ordering_fields = ['City_name', 'City_population', 'city_area']  
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess] 
     authentication_classes = [JWTAuthentication]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 class RegionEventViewSet(viewsets.ModelViewSet):
     queryset = RegionEvent.objects.all()
     serializer_class = RegionEventSerializer

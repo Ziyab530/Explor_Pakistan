@@ -18,7 +18,8 @@ class DistrictSerializer(serializers.ModelSerializer):
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = '__all__'        
+        fields = '__all__' 
+        read_only_fields = ('submitted_by', 'is_approved')        
 
 class RegionEventSerializer(serializers.ModelSerializer):
     class Meta:

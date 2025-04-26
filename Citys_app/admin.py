@@ -4,7 +4,18 @@ from .models import province,Division, District, City,RegionEvent,ReligiousFesti
 admin.site.register(province)
 admin.site.register(Division)
 admin.site.register(District)
-admin.site.register(City)
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('City_name', 'District', 'is_approved', 'submitted_by')
+    list_filter = ('is_approved', 'District', 'submitted_by')
+    search_fields = ('City_name', 'District__District_name', 'submitted_by__email')
+    actions = ['approve_selected']
+
+    def approve_selected(self, request, queryset):
+        updated = queryset.update(is_approved=True)
+        self.message_user(request, f"{updated} city(ies) approved.")
+    approve_selected.short_description = "Approve selected cities"
+
 admin.site.register(RegionEvent)
 admin.site.register(ReligiousFestival)
 admin.site.register(CulturalFestival)
