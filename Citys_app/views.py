@@ -52,7 +52,8 @@ class RegionEventViewSet(viewsets.ModelViewSet):
     ordering_fields = ['region_name']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
-
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class ReligiousFestivalViewSet(viewsets.ModelViewSet):
     queryset = ReligiousFestival.objects.all()

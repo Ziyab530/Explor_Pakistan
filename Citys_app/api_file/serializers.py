@@ -25,6 +25,7 @@ class RegionEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegionEvent
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # these will be set automatically  # These fields will not be sent by user, will be set automatically
 class ReligiousFestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReligiousFestival

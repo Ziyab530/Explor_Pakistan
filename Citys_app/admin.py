@@ -16,7 +16,17 @@ class CityAdmin(admin.ModelAdmin):
         self.message_user(request, f"{updated} city(ies) approved.")
     approve_selected.short_description = "Approve selected cities"
 
-admin.site.register(RegionEvent)
+@admin.register(RegionEvent)
+class RegionEventAdmin(admin.ModelAdmin):
+    list_display = ('region_name', 'city_id', 'is_approved', 'submitted_by')
+    list_filter = ('is_approved', 'city_id')
+    search_fields = ('region_name', 'description', 'submitted_by__username')
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            # Only set created_by during first save
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 admin.site.register(ReligiousFestival)
 admin.site.register(CulturalFestival)
 admin.site.register(FolkFestival)

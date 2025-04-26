@@ -67,6 +67,15 @@ class RegionEvent(models.Model):
     region_name = models.CharField(max_length=255)
     description = models.TextField()
     city_id = models.ForeignKey(City, on_delete= models.CASCADE, related_name="region_evevnts")
+    submitted_by = models.ForeignKey(
+        'Users_app.User',   # use your custom user model
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="submitted_region_events"
+    )
+
+    is_approved = models.BooleanField(default=False)
     def __str__(self):
         return self.region_name
     
