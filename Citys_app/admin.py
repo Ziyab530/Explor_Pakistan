@@ -27,7 +27,11 @@ class RegionEventAdmin(admin.ModelAdmin):
             # Only set created_by during first save
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
-admin.site.register(ReligiousFestival)
+@admin.register(ReligiousFestival)
+class ReligiousFestivalAdmin(admin.ModelAdmin):
+    list_display = ('name', 'date', 'region_event', 'is_approved', 'submitted_by')
+    list_filter = ('is_approved', 'date')
+    search_fields = ('name', 'description', 'traditions', 'significance')
 admin.site.register(CulturalFestival)
 admin.site.register(FolkFestival)
 admin.site.register(RegionalEvent)

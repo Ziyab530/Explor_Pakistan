@@ -89,6 +89,9 @@ class ReligiousFestival(models.Model):
     date = models.DateField()
     associated_rituals = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="religious_festivals")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name='religious_festivals')
+    is_approved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 

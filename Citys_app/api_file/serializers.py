@@ -30,6 +30,7 @@ class ReligiousFestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReligiousFestival
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 class CulturalFestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = CulturalFestival

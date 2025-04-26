@@ -63,6 +63,8 @@ class ReligiousFestivalViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'date']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class CulturalFestivalViewSet(viewsets.ModelViewSet):
     queryset = CulturalFestival.objects.all()
