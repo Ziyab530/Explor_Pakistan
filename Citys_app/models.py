@@ -104,6 +104,8 @@ class CulturalFestival(models.Model):
     season = models.CharField(max_length=255)
     significance = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="cultural_festivals")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name='cultural_festivals')  # user who submitted
+    is_approved = models.BooleanField(default=False)  # approval logic
     def __str__(self):
         return self.name
 
@@ -116,6 +118,8 @@ class FolkFestival(models.Model):
     economic_impact = models.TextField()
     cultural_relevance = models.TextField()
     region_event  = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="folk_festivals")
+    submitted_by = models.ForeignKey('Users_app.User',on_delete=models.CASCADE,related_name="folk_festivals")
+    is_approved = models.BooleanField(default=False)  # approval logic
     def __str__(self):
         return self.name
 
@@ -127,6 +131,9 @@ class RegionalEvent(models.Model):
     activities = models.TextField()
     significance = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="regional_events")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="regional_events")
+    is_approved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 
@@ -139,6 +146,8 @@ class NationalEvent(models.Model):
     celebrations = models.TextField()
     historical_significance = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="national_events")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="national_events")
+    is_approved = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 
@@ -151,6 +160,8 @@ class GlobalEvent(models.Model):
     activities = models.TextField()
     demographic_participation = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="global_events")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="global_events")
+    is_approved = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 
@@ -163,6 +174,8 @@ class AdventureEvent(models.Model):
     tourism_impact = models.TextField()
     economic_contribution = models.TextField()
     region_event = models.ForeignKey(RegionEvent, on_delete=models.CASCADE, related_name="adventure_events")
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="adventure_events")
+    is_approved = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 
@@ -170,18 +183,24 @@ class EmergencyContact(models.Model):
     emergency_contact_id = models.AutoField(primary_key=True)
     city_id = models.ForeignKey(City,on_delete=models.CASCADE,related_name="emergency_contacts")
     government_contact_number = models.CharField(max_length=255)
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="emergency_contacts")
+    is_approved = models.BooleanField(default=False)
 
 class PoliceStation(models.Model):
     emergency_contact = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, related_name="police_stations")
     contact_number = models.CharField(max_length=255)
     address = models.CharField()
     operating_hours = models.TextField()
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="police_stations")
+    is_approved = models.BooleanField(default=False)
 
 class FireStation(models.Model):
     emergency_contact = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, related_name="fire_stations")
     contact_number = models.CharField(max_length=255)
     address = models.CharField()
     operating_hours = models.TextField()
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="fire_stations")
+    is_approved = models.BooleanField(default=False)
         
 class MedicalEmergency(models.Model):
     emergency_contact = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, related_name="medical_emergencies")
@@ -189,4 +208,6 @@ class MedicalEmergency(models.Model):
     hospital_emergency_number = models.CharField(max_length=255)
     blood_bank = models.TextField()
     disaster_management = models.TextField()
-    contact_for_floods_hazards = models.TextField()    
+    contact_for_floods_hazards = models.TextField() 
+    submitted_by = models.ForeignKey('Users_app.User', on_delete=models.CASCADE, related_name="medical_emergencies")
+    is_approved = models.BooleanField(default=False)   

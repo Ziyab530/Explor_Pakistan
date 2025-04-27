@@ -33,6 +33,8 @@ class DistrictViewSet(viewsets.ModelViewSet):
     ordering_fields = ['District_name']  
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
     authentication_classes = [JWTAuthentication]
+    
+
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
@@ -74,6 +76,9 @@ class CulturalFestivalViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'season']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 
 class FolkFestivalViewSet(viewsets.ModelViewSet):
@@ -84,6 +89,9 @@ class FolkFestivalViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'region']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 
 class RegionalEventViewSet(viewsets.ModelViewSet):
@@ -94,6 +102,8 @@ class RegionalEventViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', ' region']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
     
 
 class NationalEventViewSet(viewsets.ModelViewSet):
@@ -104,6 +114,8 @@ class NationalEventViewSet(viewsets.ModelViewSet):
     Ordering_fields = ['name', 'name']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class GlobalEventViewSet(viewsets.ModelViewSet):
     queryset = GlobalEvent.objects.all()
@@ -113,6 +125,13 @@ class GlobalEventViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', ' name']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
+    
+
+    
+
 
 class AdventureEventViewSet(viewsets.ModelViewSet):
     queryset = AdventureEvent.objects.all()
@@ -122,6 +141,9 @@ class AdventureEventViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'name']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class EmergencyContactViewSet(viewsets.ModelViewSet):
     queryset = EmergencyContact.objects.all()
@@ -131,6 +153,9 @@ class EmergencyContactViewSet(viewsets.ModelViewSet):
     ordering_fields = ['government_contact_number']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class PoliceStationViewSet(viewsets.ModelViewSet):
     queryset = PoliceStation.objects.all()
@@ -140,6 +165,9 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
     ordering_fields = ['government_contact_number']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class FireStationViewSet(viewsets.ModelViewSet):
     queryset = FireStation.objects.all()
@@ -149,6 +177,9 @@ class FireStationViewSet(viewsets.ModelViewSet):
     ordering_fields = ['government_contact_number']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class MedicalEmergencyViewSet(viewsets.ModelViewSet):
     queryset = MedicalEmergency.objects.all()
@@ -158,5 +189,8 @@ class MedicalEmergencyViewSet(viewsets.ModelViewSet):
     ordering_fields = ['government_contact_number']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 

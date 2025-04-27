@@ -35,11 +35,13 @@ class CulturalFestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = CulturalFestival
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class FolkFestivalSerializer(serializers.ModelSerializer):
     class Meta:
         model = FolkFestival
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class RegionalEventSerializer(serializers.ModelSerializer):
     class Meta:

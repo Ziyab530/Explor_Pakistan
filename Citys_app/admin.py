@@ -32,15 +32,75 @@ class ReligiousFestivalAdmin(admin.ModelAdmin):
     list_display = ('name', 'date', 'region_event', 'is_approved', 'submitted_by')
     list_filter = ('is_approved', 'date')
     search_fields = ('name', 'description', 'traditions', 'significance')
-admin.site.register(CulturalFestival)
-admin.site.register(FolkFestival)
-admin.site.register(RegionalEvent)
-admin.site.register(NationalEvent)
-admin.site.register(GlobalEvent)
-admin.site.register(AdventureEvent)
-admin.site.register(EmergencyContact)
-admin.site.register(PoliceStation)
-admin.site.register(FireStation)
-admin.site.register(MedicalEmergency)
+@admin.register(CulturalFestival)
+class CulturalFestivalAdmin(admin.ModelAdmin):
+    list_display = ('festival_id','name', 'location', 'season', 'region_event', 'is_approved', 'submitted_by')
+    list_filter = ('is_approved', 'season')
+    search_fields = ('name', 'location', 'description', 'activities', 'significance')
 
+@admin.register(FolkFestival)
+class FolkFestivalAdmin(admin.ModelAdmin):
+    list_display = (
+        'festival_id',
+        'name',
+        'region',
+        'description',
+        'activities',
+        'economic_impact',
+        'cultural_relevance',
+        'region_event',
+        'submitted_by',
+        'is_approved',
+    )
+    list_filter = ('is_approved', 'region')
+    search_fields = ('name', 'region', 'description', 'activities', 'cultural_relevance')
+
+
+@admin.register(RegionalEvent)
+class RegionalEventAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in RegionalEvent._meta.fields]
+    search_fields = ['name', 'region']
+    list_filter = ['is_approved', 'region']
+
+@admin.register(NationalEvent)
+class NationalEventAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in NationalEvent._meta.fields]
+    search_fields = ['name', 'date']
+    list_filter = ['is_approved']
+
+@admin.register(GlobalEvent)
+class GlobalEventAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in GlobalEvent._meta.fields]
+    search_fields = ['name','cultural_adaptations']
+    list_filter = ['is_approved']
+
+@admin.register(AdventureEvent)
+class AdventureEventAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in AdventureEvent._meta.fields]
+    search_fields = ['name', 'region']
+    list_filter = ['is_approved', 'region']
+
+@admin.register(EmergencyContact)
+class EmergencyContactAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in EmergencyContact._meta.fields]
+    search_fields = ['government_contact_number']
+    list_filter = ['is_approved']
+
+@admin.register(PoliceStation)
+class PoliceStationAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in PoliceStation._meta.fields]
+    search_fields = ['contact_number']
+    list_filter = ['is_approved']
+
+@admin.register(FireStation)
+class FireStationAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in FireStation._meta.fields]
+    search_fields = ['contact_number']
+    list_filter = ['is_approved']
+
+@admin.register(MedicalEmergency)
+class MedicalEmergencyAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in MedicalEmergency._meta.fields]
+    search_fields = ['ambulance_service', 'hospital_emergency_number']
+    list_filter = ['is_approved']
 # Register your models here.
