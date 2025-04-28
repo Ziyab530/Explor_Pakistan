@@ -47,37 +47,45 @@ class RegionalEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegionalEvent
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class NationalEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = NationalEvent
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class GlobalEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = GlobalEvent
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 class AdventureEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdventureEvent
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class EmergencyContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmergencyContact
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class PoliceStationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PoliceStation
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class FireStationSerializer(serializers.ModelSerializer):
     class Meta:
         model = FireStation
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it
 
 class MedicalEmergencySerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicalEmergency
         fields = '__all__'
+        read_only_fields = ['is_approved', 'submitted_by']  # prevent users from manually setting it

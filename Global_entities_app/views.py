@@ -15,6 +15,8 @@ class PopulationDetailViewSet(viewsets.ModelViewSet):
     filterset_class = PopulationDetailFilter 
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 
 class PopulationChildrenViewSet(viewsets.ModelViewSet):
@@ -24,6 +26,8 @@ class PopulationChildrenViewSet(viewsets.ModelViewSet):
     filterset_class = PopulationChildrenFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class PopulationAdultViewSet(viewsets.ModelViewSet):
     queryset = PopulationAdult.objects.all()
@@ -32,6 +36,8 @@ class PopulationAdultViewSet(viewsets.ModelViewSet):
     filterset_class = PopulationAdultFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def  perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class PopulationElderlyViewSet(viewsets.ModelViewSet):
     queryset = PopulationElderly.objects.all()
@@ -40,6 +46,8 @@ class PopulationElderlyViewSet(viewsets.ModelViewSet):
     filterset_class = PopulationElderlyFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 
 class GenderRatioViewSet(viewsets.ModelViewSet):
@@ -49,6 +57,8 @@ class GenderRatioViewSet(viewsets.ModelViewSet):
     filterset_class = GenderRatioFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class PopulationLiteracyRateViewSet(viewsets.ModelViewSet):
     queryset = PopulationLiteracyRate.objects.all()
@@ -57,6 +67,8 @@ class PopulationLiteracyRateViewSet(viewsets.ModelViewSet):
     filterset_class = PopulationLiteracyRateFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class GeographicalInformationViewSet(viewsets.ModelViewSet):
     queryset = GeographicalInformation.objects.all()
@@ -65,6 +77,8 @@ class GeographicalInformationViewSet(viewsets.ModelViewSet):
     filterset_class = GeographicalInformationFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LocationInformationViewSet(viewsets.ModelViewSet):
     queryset = LocationInformation.objects.all()
@@ -72,6 +86,8 @@ class LocationInformationViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
     
 
 class GeoAreaViewSet(viewsets.ModelViewSet):
@@ -81,6 +97,8 @@ class GeoAreaViewSet(viewsets.ModelViewSet):
     filterset_class = GeoAreaFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class ClimateDetailViewSet(viewsets.ModelViewSet):
     queryset = ClimateDetail.objects.all()
@@ -89,6 +107,8 @@ class ClimateDetailViewSet(viewsets.ModelViewSet):
     filterset_class = ClimateDetailFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class HistoricalBackgroundViewSet(viewsets.ModelViewSet):
     queryset = HistoricalBackground.objects.all()
@@ -97,6 +117,8 @@ class HistoricalBackgroundViewSet(viewsets.ModelViewSet):
     filterset_class = HistoricalBackgroundFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class EconomyViewSet(viewsets.ModelViewSet):
     queryset = Economy.objects.all()
@@ -107,6 +129,8 @@ class EconomyViewSet(viewsets.ModelViewSet):
     filterset_class = EconomyFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class FarmingViewSet(viewsets.ModelViewSet):
     queryset = Farming.objects.all()
@@ -115,6 +139,8 @@ class FarmingViewSet(viewsets.ModelViewSet):
     filterset_class = FarmingFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class HandicraftsViewSet(viewsets.ModelViewSet):
     queryset = Handicrafts.objects.all()
@@ -123,6 +149,8 @@ class HandicraftsViewSet(viewsets.ModelViewSet):
     filterset_class = HandicraftsFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class IndustriesViewSet(viewsets.ModelViewSet):
     queryset = Industries.objects.all()
@@ -131,6 +159,8 @@ class IndustriesViewSet(viewsets.ModelViewSet):
     filterset_class = IndustriesFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class CulturalInformationViewSet(viewsets.ModelViewSet):
     queryset = CulturalInformation.objects.all()
@@ -139,6 +169,8 @@ class CulturalInformationViewSet(viewsets.ModelViewSet):
     filterset_class = CulturalInformationFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LocalFestivalViewSet(viewsets.ModelViewSet):
     queryset = LocalFestival.objects.all()
@@ -147,6 +179,8 @@ class LocalFestivalViewSet(viewsets.ModelViewSet):
     filterset_class = LocalFestivalFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class TraditionsViewSet(viewsets.ModelViewSet):
     queryset = Traditions.objects.all()
@@ -155,6 +189,8 @@ class TraditionsViewSet(viewsets.ModelViewSet):
     filterset_class = TraditionsFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LanguageSpokenViewSet(viewsets.ModelViewSet):
     queryset = LanguageSpoken.objects.all()
@@ -163,3 +199,5 @@ class LanguageSpokenViewSet(viewsets.ModelViewSet):
     filterset_class = LanguageSpokenFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
