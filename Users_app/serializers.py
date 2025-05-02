@@ -60,6 +60,7 @@ class HomeFeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomeFeed
         fields = '__all__'
+        read_only_fields = ['submitted_by', 'is_approved']
 
 class CommentSerializer(serializers.ModelSerializer):
     user_name = serializers.ReadOnlyField(source='user.username')

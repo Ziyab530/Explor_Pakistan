@@ -113,6 +113,8 @@ class HomeFeedViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = HomeFeedFilter
     ordering_fields = ['created_at', 'likes']
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
     @action(detail=True, methods=['post'])
     def like(self, request, pk=None):
