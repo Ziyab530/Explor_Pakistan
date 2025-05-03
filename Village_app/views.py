@@ -8,7 +8,6 @@ from rest_framework.filters import OrderingFilter
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .permissions import IsAuthenticatedOrReadOnlyWithAdminFullAccess
 class VillageViewSet(viewsets.ModelViewSet):
-
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -16,6 +15,10 @@ class VillageViewSet(viewsets.ModelViewSet):
     ordering_fields = ['village_id']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class VillageProfileViewSet(viewsets.ModelViewSet):
     queryset = VillageProfile.objects.all()
@@ -26,6 +29,9 @@ class VillageProfileViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class SignificantPeopleViewSet(viewsets.ModelViewSet):
     queryset = SignificantPeople.objects.all()
     serializer_class = SignificantPeopleSerializer
@@ -34,6 +40,9 @@ class SignificantPeopleViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'age', 'historic_period']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 
 
@@ -46,6 +55,9 @@ class CommunityServicesViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class EducationViewSet(viewsets.ModelViewSet):
     queryset = Education.objects.all()
@@ -56,6 +68,9 @@ class EducationViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class HealthCareFacilitiesViewSet(viewsets.ModelViewSet):
     queryset = HealthCare_facilities.objects.all()
     serializer_class = HealthCareFacilitiesSerializer
@@ -64,6 +79,9 @@ class HealthCareFacilitiesViewSet(viewsets.ModelViewSet):
     ordering_fields = ['hospital', 'clinic', 'pharmacy']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 
 class MarketViewSet(viewsets.ModelViewSet):
@@ -75,6 +93,9 @@ class MarketViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess] 
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class TransportationViewSet(viewsets.ModelViewSet):
     queryset = Transportations.objects.all()
     serializer_class = TransportationSerializer
@@ -83,6 +104,9 @@ class TransportationViewSet(viewsets.ModelViewSet):
     ordering_fields = ['Buses', 'Rickshaw', 'Suzuki']
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class UtilitiesViewSet(viewsets.ModelViewSet):
     queryset =Uitilites.objects.all()
@@ -93,6 +117,9 @@ class UtilitiesViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class RecreationalFacilitiesViewSet(viewsets.ModelViewSet):
     queryset = Recreational_facilites.objects.all()
     serializer_class = RecreationalFacilitiesSerializer
@@ -100,6 +127,9 @@ class RecreationalFacilitiesViewSet(viewsets.ModelViewSet):
     filterset_class = RecreationalFacilitiesFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
    
 
 class TouristAttractionViewSet(viewsets.ModelViewSet):
@@ -110,6 +140,9 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 
 class NaturalLandmarkViewSet(viewsets.ModelViewSet):
     queryset = NaturalLandmark.objects.all()
@@ -119,6 +152,9 @@ class NaturalLandmarkViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class CulturalHistoricalPlacesViewSet(viewsets.ModelViewSet):
     queryset = CulturalHistoricalPlaces.objects.all()
     serializer_class = CulturalHistoricalPlacesSerializer
@@ -126,6 +162,9 @@ class CulturalHistoricalPlacesViewSet(viewsets.ModelViewSet):
     filterset_class = CulturalHistoricalPlacesFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LocalEventsViewSet(viewsets.ModelViewSet):
     queryset = LocalEvents.objects.all()
@@ -135,6 +174,9 @@ class LocalEventsViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class AdditionalElementViewSet(viewsets.ModelViewSet):
     queryset = AdditionalElement.objects.all()
     serializer_class = AdditionalElementSerializer
@@ -142,6 +184,9 @@ class AdditionalElementViewSet(viewsets.ModelViewSet):
     filterset_class = AdditionalElementFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LandUseZoningViewSet(viewsets.ModelViewSet):
     queryset = LandUseZoning.objects.all()
@@ -151,6 +196,9 @@ class LandUseZoningViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class InfrastructureDevelopmentViewSet(viewsets.ModelViewSet):
     queryset = InfrastructureDevelopment.objects.all()
     serializer_class = InfrastructureDevelopmentSerializer
@@ -158,6 +206,9 @@ class InfrastructureDevelopmentViewSet(viewsets.ModelViewSet):
     filterset_class = InfrastructureDevelopmentFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 
 class LocalBusinessEmploymentViewSet(viewsets.ModelViewSet):
     queryset = LocalBusinessEmployment.objects.all()
@@ -167,6 +218,9 @@ class LocalBusinessEmploymentViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
 
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
+
 class PublicServicesContactViewSet(viewsets.ModelViewSet):
     queryset = PublicServicesContact.objects.all()
     serializer_class = PublicServicesContactSerializer
@@ -174,4 +228,7 @@ class PublicServicesContactViewSet(viewsets.ModelViewSet):
     filterset_class = PublicServicesContactFilter
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnlyWithAdminFullAccess]
+
+    def perform_create(self, serializer):
+        serializer.save(submitted_by=self.request.user)
 # Create your views here.
