@@ -40,7 +40,7 @@ class City(models.Model):
     City_code = models.CharField(max_length=10)
     District = models.ForeignKey(District, on_delete=models.CASCADE, related_name='cities')
     City_population = models.IntegerField()
-    city_area = models.FloatField()
+    city_area = models.CharField(max_length=100)
     Climate_detail = models.CharField(max_length=200)
     No_of_villages_in_city = models.IntegerField()
     City_description = models.TextField()
