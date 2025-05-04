@@ -36,6 +36,7 @@ class District(models.Model):
 class City(models.Model):
     City_id = models.AutoField(primary_key=True)
     City_name = models.CharField(max_length=100)
+    emergencyNumber = models.CharField(max_length=50)
     City_code = models.CharField(max_length=10)
     District = models.ForeignKey(District, on_delete=models.CASCADE, related_name='cities')
     City_population = models.IntegerField()
