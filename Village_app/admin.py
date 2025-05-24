@@ -66,6 +66,7 @@ class TouristAttractionAdmin(admin.ModelAdmin):
       list_display = [field.name for field in TouristAttraction._meta.fields]
       list_filter = ['is_approved']
       search_fields = ['submitted_by']
+
 @admin.register(NaturalLandmark)
 class NaturalLandmarkAdmin(admin.ModelAdmin):
       list_display = [field.name for field in NaturalLandmark._meta.fields]
@@ -107,6 +108,7 @@ class LocalBusinessEmploymentAdmin(admin.ModelAdmin):
       list_display = [field.name for field in LocalBusinessEmployment._meta.fields]
       list_filter = ['is_approved']
       search_fields = ['submitted_by']
+      
 @admin.register(PublicServicesContact)
 class PublicServicesContactAdmin(admin.ModelAdmin):
       list_display = [field.name for field in PublicServicesContact._meta.fields]
